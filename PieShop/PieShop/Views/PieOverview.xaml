@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PieShop.ViewModels"
+             x:Class="PieShop.Views.PieOverview"
+             BackgroundImageSource="patternwide.jpg">
+
+    <ContentPage.BindingContext>
+        <viewModels:PieOverviewViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <StackLayout Margin="10">
+            <Button Text="Load pies"
+                    Command="{Binding LoadPiesCommand}" />
+            <Button Text="Add Pie"
+                    Command="{Binding GoToAddPiePageCommand}" />
+            <CollectionView x:Name="Pies"
+                            ItemsSource="{Binding Pies}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5">
+                            <Grid BackgroundColor="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding ImageUrl}"
+                                       HeightRequest="70" />
+                                <Label Text="{Binding Name}"
+                                       Grid.Column="1" />
+                                <Label Text="{Binding Price}"
+                                       HorizontalTextAlignment="End"
+                                       Grid.Column="2" />
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

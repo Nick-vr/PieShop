@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PieShop.Models
 {
-    internal class Pie
+    public class Pie
     {
         public int Id { get; set; }
 
@@ -44,7 +44,7 @@ namespace PieShop.Models
 
         public string ImageUrl
         {
-            get => _imageUrl;
+            get => _imageUrl ?? (_imageUrl = "cheesecakesmall.jpg");
             set => _imageUrl = value;
         }
     }
