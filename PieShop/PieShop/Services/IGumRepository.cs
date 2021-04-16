@@ -7,7 +7,7 @@ namespace PieShop.Services
     {
         List<Gum> GetAllGums();
 
-        void AddGum(Gum gum);
+        void SaveGum(Gum gum);
 
         Gum GetGum(int id);
     }

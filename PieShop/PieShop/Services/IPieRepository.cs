@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PieShop.Models;
 
 namespace PieShop.Services
 {
     public interface IPieRepository
     {
-        List<Pie> GetAllPies();
+        Task<List<Pie>> GetAllPies();
 
-        void AddPie(Pie pie);
+        Task<Pie> GetPie(int id);
 
-        Pie GetPie(int id);
+        Task SavePie(Pie pie);
     }
 }

@@ -38,21 +38,21 @@ namespace PieShop.ViewModels
             }
         }
 
-        private IPieRepository _repository;
+        private readonly IPieRepository _repository;
 
         public Command SaveCommand => new Command(OnSave);
 
         public PieDetailViewModel()
         {
             SelectedPie = new Pie();
-            _repository = PieRepository.GetSingleton();
+            _repository = new PieRepository();
         }
 
-        private void LoadPie(int value)
+        private async void LoadPie(int value)
         {
             try
             {
-                var pie = _repository.GetPie(value);
+                var pie = await _repository.GetPie(value);
                 SelectedPie = pie;
             }
             catch (Exception e)
@@ -63,7 +63,7 @@ namespace PieShop.ViewModels
 
         private async void OnSave()
         {
-            _repository.AddPie(SelectedPie);
+            await _repository.SavePie(SelectedPie);
             await Shell.Current.GoToAsync("..");
         }
     }

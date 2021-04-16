@@ -8,66 +8,37 @@ namespace PieShop.Services
 {
     public class GumRepository : IGumRepository
     {
-        // Singleton
-        private static GumRepository _instance;
-
-        private GumRepository()
+        public List<Gum> GetAllGums()
         {
-            AddDummyData();
-        }
-
-        public static GumRepository GetSingleton() => _instance ?? (_instance = new GumRepository());
-
-        // MOCK DB
-        private List<Gum> _gums { get; set; }
-
-        public List<Gum> GetAllGums() => _gums;
-
-        public void AddGum(Gum gum) => _gums.Add(gum);
-
-        private void AddDummyData()
-        {
-            _gums = new List<Gum>
+            using (var dbContext = new PieShopContext())
             {
-                new Gum
-                {
-                    Id = 1,
-                    IsInStock = true,
-                    ImageUrl = "mentos_bubble.png",
-                    Name = "Bubble Gum",
-                    Price = 3.95,
-                    Description = "MENTOS GUM PURE FRESH CINNAMON CURVY BOTTLE"
-                },
-                new Gum
-                {
-                    Id = 2,
-                    IsInStock = true,
-                    ImageUrl = "mentos_cinnamon.png",
-                    Name = "Cinnamon Gum",
-                    Price = 3.95,
-                    Description = "MENTOS GUM PURE FRESH CINNAMON CURVY BOTTLE"
-                },
-                new Gum
-                {
-                    Id = 3,
-                    IsInStock = true,
-                    ImageUrl = "mentos_grape.png",
-                    Name = "Grape Gum",
-                    Price = 3.95,
-                    Description = "MENTOS GUM PURE FRESH GRAPE MEDLEY"
-                },
-                new Gum
-                {
-                    Id = 4,
-                    IsInStock = true,
-                    ImageUrl = "mentos_watermelon.png",
-                    Name = "Watermelon Gum",
-                    Price = 3.95,
-                    Description = "MENTOS GUM WATERMELON CURVY BOTTLE"
-                },
-            };
+                return dbContext.Gums.ToList();
+            }
         }
 
-        public Gum GetGum(int id) => _gums.FirstOrDefault(x => x.Id == id);
+        public Gum GetGum(int id)
+        {
+            using (var dbContext = new PieShopContext())
+            {
+                return dbContext.Gums.Find(id);
+            }
+        }
+
+        public void SaveGum(Gum gum)
+        {
+            using (var dbContext = new PieShopContext())
+            {
+                if (gum.Id == 0)
+                {
+                    dbContext.Gums.Add(gum);
+                }
+                else
+                {
+                    dbContext.Gums.Update(gum);
+                }
+
+                dbContext.SaveChanges();
+            }
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace PieShop.ViewModels
 
         public GumsViewModel()
         {
-            _repository = GumRepository.GetSingleton();
+            _repository = new GumRepository();
             LoadGums();
         }
 

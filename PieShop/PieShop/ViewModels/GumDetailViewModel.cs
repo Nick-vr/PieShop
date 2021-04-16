@@ -35,19 +35,13 @@ namespace PieShop.ViewModels
             }
         }
 
-        private IGumRepository _repository;
+        private readonly IGumRepository _repository;
         public Command SaveCommand => new Command(OnSave);
 
         public GumDetailViewModel()
         {
             SelectedGum = new Gum();
-            _repository = GumRepository.GetSingleton();
-        }
-
-        private async void OnSave(object obj)
-        {
-            _repository.AddGum(SelectedGum);
-            await Shell.Current.GoToAsync("..");
+            _repository = new GumRepository();
         }
 
         private void LoadPie(int value)
@@ -61,6 +55,12 @@ namespace PieShop.ViewModels
             {
                 Debug.WriteLine(e);
             }
+        }
+
+        private async void OnSave(object obj)
+        {
+            _repository.SaveGum(SelectedGum);
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

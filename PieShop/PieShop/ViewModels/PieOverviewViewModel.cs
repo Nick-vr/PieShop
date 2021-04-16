@@ -30,7 +30,7 @@ namespace PieShop.ViewModels
 
         public PieOverviewViewModel()
         {
-            _repository = PieRepository.GetSingleton();
+            _repository = new PieRepository();
             LoadPies();
         }
 
@@ -39,13 +39,13 @@ namespace PieShop.ViewModels
             await Shell.Current.GoToAsync($"{nameof(PieDetailView)}");
         }
 
-        public void LoadPies()
+        public async void LoadPies()
         {
             IsBusy = true;
 
             try
             {
-                var pies = _repository.GetAllPies();
+                var pies = await _repository.GetAllPies();
                 Pies = new ObservableCollection<Pie>(pies);
             }
             catch (Exception e)
