@@ -26,6 +26,7 @@ namespace PieShop.ViewModels
         private IPieRepository _repository;
         public Command GoToAddPiePageCommand => new Command(GoToAddPiePage);
         public Command LoadPiesCommand => new Command(LoadPies);
+        public Command<Pie> ItemTapped => new Command<Pie>(OnPieSelected);
 
         public PieOverviewViewModel()
         {
@@ -40,8 +41,27 @@ namespace PieShop.ViewModels
 
         public void LoadPies()
         {
-            var pies = _repository.GetAllPies();
-            Pies = new ObservableCollection<Pie>(pies);
+            IsBusy = true;
+
+            try
+            {
+                var pies = _repository.GetAllPies();
+                Pies = new ObservableCollection<Pie>(pies);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void OnPieSelected(Pie pie)
+        {
+            await Shell.Current.GoToAsync($"{nameof(PieDetailView)}?{nameof(PieDetailViewModel.PieId)}={pie.Id}");
         }
     }
 }

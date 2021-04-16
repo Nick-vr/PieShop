@@ -113,9 +113,14 @@
                       ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Pies"
-                Icon="icon_feed.png">
+                Icon="icon_pie.png">
         <ShellContent Route="PieOverview"
                       ContentTemplate="{DataTemplate local:PieOverview}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Gums"
+                Icon="icon_candy.png">
+        <ShellContent Route="GumsPage"
+                      ContentTemplate="{DataTemplate local:GumsPage}" />
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

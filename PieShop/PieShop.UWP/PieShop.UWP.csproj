@@ -105,6 +105,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cheesecakesmall.jpg" />
+    <Content Include="icon_candy.png" />
+    <Content Include="icon_pie.png" />
+    <Content Include="mentos_bubble.png" />
+    <Content Include="mentos_cinnamon.png" />
+    <Content Include="mentos_grape.png" />
+    <Content Include="mentos_watermelon.png" />
     <Content Include="patternwide.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />

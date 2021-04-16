@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PieShop.Models;
@@ -24,10 +25,7 @@ namespace PieShop.Services
 
         public List<Pie> GetAllPies() => _pies;
 
-        public void AddPie(Pie pie)
-        {
-            _pies.Add(pie);
-        }
+        public void AddPie(Pie pie) => _pies.Add(pie);
 
         private void AddDummyData()
         {
@@ -75,5 +73,7 @@ namespace PieShop.Services
                 }
             };
         }
+
+        public Pie GetPie(int id) => _pies.FirstOrDefault(x => x.Id == id);
     }
 }

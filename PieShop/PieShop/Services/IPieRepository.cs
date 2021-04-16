@@ -10,5 +10,7 @@ namespace PieShop.Services
         List<Pie> GetAllPies();
 
         void AddPie(Pie pie);
+
+        Pie GetPie(int id);
     }
 }

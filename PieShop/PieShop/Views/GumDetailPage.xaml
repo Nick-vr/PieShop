@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PieShop.ViewModels;assembly=PieShop"
+             x:Class="PieShop.Views.GumDetailPage">
+    <ContentPage.BindingContext>
+        <viewModels:GumDetailViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="40,20">
+                <Label Text="Gum Management"
+                       HorizontalOptions="Center"
+                       FontSize="Large"
+                       Margin="0,50" />
+
+                <Image Source="{Binding SelectedGum.ImageUrl}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       HeightRequest="100" />
+                <Entry Placeholder="Pie name"
+                       Text="{Binding SelectedGum.Name}" />
+                <Entry Placeholder="Price"
+                       Keyboard="Numeric"
+                       Text="{Binding SelectedGum.Price}" />
+                <Editor Placeholder="Description"
+                        HeightRequest="100"
+                        Text="{Binding SelectedGum.Description}" />
+                <StackLayout HorizontalOptions="End">
+                    <Label Text="In stock?" />
+                    <Switch IsToggled="{Binding SelectedGum.IsInStock}" />
+                </StackLayout>
+                <Button Text="Save"
+                        Margin="0,50"
+                        Command="{Binding SaveCommand}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

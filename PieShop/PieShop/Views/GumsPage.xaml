@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:PieShop.ViewModels"
-             x:Class="PieShop.Views.PieOverview"
-             BackgroundImageSource="patternwide.jpg">
+             xmlns:viewmodels="clr-namespace:PieShop.ViewModels"
+             x:Class="PieShop.Views.GumsPage">
 
     <ContentPage.BindingContext>
-        <viewModels:PieOverviewViewModel />
+        <viewmodels:GumsViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add"
-                     Command="{Binding GoToAddPiePageCommand}" />
+                     Command="{Binding AddGumPageCommand}" />
     </ContentPage.ToolbarItems>
 
-    <RefreshView Command="{Binding LoadPiesCommand}"
+    <RefreshView Command="{Binding LoadGumsCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="PiesList"
-                        ItemsSource="{Binding Pies}"
+
+        <CollectionView x:Name="GumssList"
+                        ItemsSource="{Binding Gums}"
                         SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -37,7 +37,7 @@
                                    Grid.Column="2" />
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1"
-                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PieOverviewViewModel}}, Path=ItemTapped}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:GumsViewModel}}, Path=ItemTapped}"
                                                       CommandParameter="{Binding .}">
                                 </TapGestureRecognizer>
                             </Grid.GestureRecognizers>
