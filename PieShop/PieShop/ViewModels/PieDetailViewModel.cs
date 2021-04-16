@@ -52,7 +52,7 @@ namespace PieShop.ViewModels
         {
             try
             {
-                var pie = await _repository.GetPie(value);
+                var pie = await _repository.GetPieAsync(value);
                 SelectedPie = pie;
             }
             catch (Exception e)
@@ -63,7 +63,7 @@ namespace PieShop.ViewModels
 
         private async void OnSave()
         {
-            await _repository.SavePie(SelectedPie);
+            await _repository.SavePieAsync(SelectedPie);
             await Shell.Current.GoToAsync("..");
         }
     }

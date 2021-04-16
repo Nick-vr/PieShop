@@ -11,7 +11,7 @@ namespace PieShop.Services
 {
     public class PieRepository : IPieRepository
     {
-        public async Task<List<Pie>> GetAllPies()
+        public async Task<List<Pie>> GetAllPiesAsync()
         {
             using (var dbContext = new PieShopContext())
             {
@@ -19,7 +19,7 @@ namespace PieShop.Services
             }
         }
 
-        public async Task<Pie> GetPie(int id)
+        public async Task<Pie> GetPieAsync(int id)
         {
             using (var dbContext = new PieShopContext())
             {
@@ -74,7 +74,7 @@ namespace PieShop.Services
         //    };
         //}
 
-        public async Task SavePie(Pie pie)
+        public async Task SavePieAsync(Pie pie)
         {
             using (var dbContext = new PieShopContext())
             {

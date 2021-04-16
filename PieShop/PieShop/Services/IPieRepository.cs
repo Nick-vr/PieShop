@@ -6,10 +6,10 @@ namespace PieShop.Services
 {
     public interface IPieRepository
     {
-        Task<List<Pie>> GetAllPies();
+        Task<List<Pie>> GetAllPiesAsync();
 
-        Task<Pie> GetPie(int id);
+        Task<Pie> GetPieAsync(int id);
 
-        Task SavePie(Pie pie);
+        Task SavePieAsync(Pie pie);
     }
 }

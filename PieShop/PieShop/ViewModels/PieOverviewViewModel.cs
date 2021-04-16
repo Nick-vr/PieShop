@@ -45,7 +45,7 @@ namespace PieShop.ViewModels
 
             try
             {
-                var pies = await _repository.GetAllPies();
+                var pies = await _repository.GetAllPiesAsync();
                 Pies = new ObservableCollection<Pie>(pies);
             }
             catch (Exception e)
